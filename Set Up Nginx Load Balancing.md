@@ -1,13 +1,14 @@
 # Set Up Nginx Load Balancing
-![A](https://github.com/nu11secur1ty/Nginx-Load-Balancing/blob/master/photo/load-balancer-graph-1-1024x522.png)
 
-
+![A](https://github.com/nu11secur1ty/Nginx-Load-Balancing/blob/master/photo/scheme.png)
 
 # About Load Balancing
 
 Load balancing is a useful mechanism to distribute incoming traffic around several capable Virtual Private servers.By apportioning the processing mechanism to several machines, redundancy is provided to the application -- ensuring fault tolerance and heightened stability. The Round Robin algorithm for load balancing sends visitors to one of a set of IPs. At its most basic level Round Robin, which is fairly easy to implement, distributes server load without implementing considering more nuanced factors like server response time and the visitors’ geographic region. Load balancing is an excellent way to scale out your application and increase it’s performance and redundancy. Nginx, which is a popular web server software, can be configured as a simple yet powerful load balancer to improve your servers resource availability and efficiency. In a load balancing configuration nginx acts as single entrance point to a distributed web application working on multiple separate servers.
 
-![A](https://github.com/nu11secur1ty/Nginx-Load-Balancing/blob/master/photo/load-balancer.png)
+![A](https://github.com/nu11secur1ty/Nginx-Load-Balancing/blob/master/photo/load-balancer-graph-1-1024x522.png)
+
+
 
 This guide describes how to set up load balancing with nginx for your cloud servers. As a prerequisite you’ll need to have at least two hosts with a web server software installed and configured to see the benefit of the load balancer. If you already have one web host set up, you can use the Server Cloning feature available at your UpCloud Control Panel.
 
