@@ -249,4 +249,77 @@ TraceEnable off
 40. How to troubleshoot port conflict issue?
 netstat would be useful to troubleshoot the port conflict issue. If running multiple instances on a single server then it would be recommended to have absolute IP:Port configured in Listen directive.
 
+41. Virtual hosts configuration
+########################### Virtual hosts start##################
+########################### Jenkins ###########################
+<VirtualHost *:8080>
+ServerName centos73
+ProxyPass / http://centos73:8080/
+ProxyPassReverse / http://centos73:8080/
+</VirtualHost>
+########################### Kibana ###########################
+<VirtualHost *:8070>
+ServerName centos73
+ProxyPass / http://centos73:8070/
+ProxyPassReverse / http://centos73:8070/
+</VirtualHost>
+########################### tomcat ###########################
+<VirtualHost *:8030>
+ServerName centos73
+ProxyPass / http://centos73:8030/
+ProxyPassReverse / http://centos73:8030/
+</VirtualHost>
+########################### httpd ###########################
+<VirtualHost *:8050>
+ServerName centos73
+ProxyPass / http://centos73:8050/
+ProxyPassReverse / http://centos73:8050/
+</VirtualHost>
+########################### Virtual hosts end##################
+
+42. Apache Multi processing Modules (MPM)
+
+Unix	prefork, worker, or event, depending on platform capabilities
+Windows	mpm_winnt
+
+
+In the case of Unix, the decision as to which MPM is installed is based on two questions:
+
+1. Does the system support threads?
+2. Does the system support thread-safe polling (Specifically, the kqueue and epoll functions)?
+
+If the answer to both questions is 'yes', the default MPM is event.
+If The answer to #1 is 'yes', but the answer to #2 is 'no', the default will be worker.
+If the answer to both questions is 'no', then the default MPM will be prefork.
+In practical terms, this means that the default will almost always be event, as all modern operating systems support these two features.
+
+43. httpd -h
+Usage: httpd [-D name] [-d directory] [-f file]
+             [-C "directive"] [-c "directive"]
+             [-k start|restart|graceful|graceful-stop|stop]
+             [-v] [-V] [-h] [-l] [-L] [-t] [-T] [-S] [-X]
+Options:
+  -D name            : define a name for use in <IfDefine name> directives
+  -d directory       : specify an alternate initial ServerRoot
+  -f file            : specify an alternate ServerConfigFile
+  -C "directive"     : process directive before reading config files
+  -c "directive"     : process directive after reading config files
+  -e level           : show startup errors of level (see LogLevel)
+  -E file            : log startup errors to file
+  -v                 : show version number
+  -V                 : show compile settings
+  -h                 : list available command line options (this page)
+  -l                 : list compiled in modules
+  -L                 : list available configuration directives
+  -t -D DUMP_VHOSTS  : show parsed vhost settings
+  -t -D DUMP_RUN_CFG : show parsed run settings
+  -S                 : a synonym for -t -D DUMP_VHOSTS -D DUMP_RUN_CFG
+  -t -D DUMP_MODULES : show all loaded modules
+  -M                 : a synonym for -t -D DUMP_MODULES
+  -t                 : run syntax check for config files
+  -T                 : start without DocumentRoot(s) check
+  -X                 : debug mode (only one worker, do not detach)
+
+
+
 I hope above questions and answer help you to prepare for a web server administrator interview. Good luck and let me know in comments if you find this useful.
